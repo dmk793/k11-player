@@ -1,0 +1,9 @@
+#!/bin/bash
+#st -t "Cmd"
+uxterm -title "Cmd" \
+    +sb -sl 200 -cr white \
+    -fg lightgray -bg "#101023" \
+    -fn -*-terminus-*-*-*-*-28-*-*-*-*-*-iso10646-*
+
+
+

@@ -1,0 +1,110 @@
+\documentclass[a3paper,landscape]{article}
+\usepackage[utf8x]{inputenc}
+%\usepackage[T2A, LGR, T1]{fontenc}
+%\usepackage{ucs}
+\usepackage{DejaVuSansMono}
+\renewcommand*\familydefault{\ttdefault}
+\usepackage[T2A]{fontenc}
+%\usepackage{dejavu}
+\usepackage{indentfirst}
+\usepackage[linkbordercolor={0 0 0},pdfborder={0 0 0},unicode]{hyperref}
+\usepackage[paper=a3paper,left=25mm,right=15mm,top=20mm,bottom=20mm]{geometry}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{dejavu}
+%\fontfamily{dejavu}
+%\renewcommand{\rmdefault}{ftm}
+\usepackage{colortbl}
+\usepackage[rgb]{xcolor}
+%\usepackage[T1,T2A]{fontenc}
+%\usepackage{lmodern}
+%\renewcommand{\rmdefault}{ftm}
+%\usepackage{graphicx}
+\renewcommand\normalsize{\fontsize{12}{14.8pt}\selectfont}
+\setcounter{tocdepth}{4}
+\title{Peripheral connection of lpc1788}
+%\author{Dmytry Kobylin}
+\begin{document}
+\maketitle
+
+%\newpage
+%\tableofcontents
+%\newpage
+
+%\section{Connection table}
+
+%\def \tgtested {\cellcolor[gray]{0.45}\textbf{+}}
+%\def \tguntested {\cellcolor[gray]{0.7}u}
+%\def \tgnotwork {\cellcolor[gray]{0.9}x}
+%\def \tgnoavail {\cellcolor[gray]{1}--}
+
+\def \tgempty   {\cellcolor[gray]{1}}
+\def \tgblock   {\cellcolor[gray]{0.8}}
+\def \tgnotsel  {\cellcolor[gray]{0.7}--}
+\def \tgmarked  {\cellcolor[gray]{0.5}*}
+
+%\noindent \textbf{"+"} - tested \\
+%\textbf{"u"} - untested, but should work \\
+%\textbf{"x"} - not working or not implemented \\
+%\textbf{"--"} - feature not available \\
+%\\
+%Hw - version of hardware \\
+%Fw - version of firmware for hardware \\
+%Sw - version of software (cyssc) \\
+
+%\fontsize{8}{10}
+\footnotesize
+
+
+\begin{center}
+    \begin{longtable}{|l|c|c|c|c|c|c|c|c|c|c|}
+    \caption{Connection Table (LQFP208) \label{tab:con_table_lqfp208}}\\
+        \hline
+            \multirow{2}{*}{\textbf{Peripheral Function}} & \textbf{P0.12} & \textbf{P0.13} & \textbf{P1.31} & \textbf{P2.14} & \textbf{P2.19} & \textbf{P2.21} & \textbf{P2.22} & \textbf{P2.23} & \textbf{P2.25} \\
+                                                          & \textbf{41}    & \textbf{45}    & \textbf{40}    & \textbf{91}    & \textbf{67}    & \textbf{81}    & \textbf{85}    & \textbf{64}    & \textbf{54}    \\
+        \hline
+        \hline
+            \multicolumn{7}{|l|}{\textbf{Buttons}} \\ \hline
+        \hline
+            Button0                                       & \tgempty       & \tgempty       & \tgempty       & \tgmarked      & \tgblock       & \tgblock       & \tgblock       & \tgblock       & \tgblock       \\ \hline 
+            Button1                                       & \tgempty       & \tgempty       & \tgempty       & \tgblock       & \tgmarked      & \tgblock       & \tgblock       & \tgblock       & \tgblock       \\ \hline
+            Button2                                       & \tgempty       & \tgempty       & \tgempty       & \tgblock       & \tgblock       & \tgmarked      & \tgblock       & \tgblock       & \tgblock       \\ \hline
+            Button3                                       & \tgempty       & \tgempty       & \tgempty       & \tgblock       & \tgblock       & \tgblock       & \tgmarked      & \tgblock       & \tgblock       \\ \hline
+            Button4                                       & \tgempty       & \tgempty       & \tgempty       & \tgblock       & \tgblock       & \tgblock       & \tgblock       & \tgmarked      & \tgblock       \\ \hline
+            Button5                                       & \tgempty       & \tgempty       & \tgempty       & \tgblock       & \tgblock       & \tgblock       & \tgblock       & \tgblock       & \tgmarked      \\ \hline
+        \hline
+            \multicolumn{7}{|l|}{\textbf{SSP1 (VS1053 SCI, VS1053 SDI)}} \\ \hline
+        \hline
+            SCK                                           & \tgblock       & \tgblock       & \tgmarked      & \tgempty       & \tgempty       & \tgempty       & \tgempty       & \tgempty       & \tgempty       \\ \hline
+            MISO                                          & \tgmarked      & \tgblock       & \tgblock       & \tgempty       & \tgempty       & \tgempty       & \tgempty       & \tgempty       & \tgempty       \\ \hline
+            MOSI                                          & \tgblock       & \tgmarked      & \tgblock       & \tgempty       & \tgempty       & \tgempty       & \tgempty       & \tgempty       & \tgempty       \\ \hline
+        \hline
+
+%     *     SSP1
+%     *         SCK   P0.7, P1.19, P1.31, P4.20
+%     *         MISO  P0.8, P0.12, P1.18, P4.22
+%     *         MOSI  P0.9, P0.13, P1.22, P4.23
+%
+        
+%     * SSP1
+%     *     SCK     P1.31    MP40       <---> SCLK
+%     *     MISO    P0.12    MP41       <---- SO
+%     *     MOSI    P0.13    MP45       ----> SI
+%     *
+%     *             P2.27    MP47       ----> xCS
+%     *             P2.31    MP39       ----> xDCS
+%     *             P0.28    MP48       <---- DREQ
+%     *             P1.31    MP40       ----> xRESET
+%
+
+
+    \end{longtable}
+
+\end{center}
+
+\normalfont
+
+
+
+\end{document}
+

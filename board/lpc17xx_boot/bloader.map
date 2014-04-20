@@ -1,0 +1,402 @@
+Archive member included because of file (symbol)
+
+/usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+                              src/dport.o (memcpy)
+../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+                              src/main.o (uart_setup)
+../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+                              src/main.o (stimer_init)
+../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+                              src/main.o (gpio_init)
+../../lib/misc/libmisc.a(debug.o)
+                              src/main.o (udprint)
+../../lib/misc/libmisc.a(crc16.o)
+                              src/main.o (crc16ccitt_init)
+/usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+                              ../../lib/misc/libmisc.a(debug.o) (strlen)
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+RAM              0x10000000         0x00002000         xrw
+VECTRAM          0x20000000         0x00000100         xrw
+UVECTRAM         0x20000100         0x00000010         xrw
+RAM0_0           0x20000104         0x00001f00         xrw
+RAM0_1           0x20002000         0x00002000         xrw
+RAM1             0x20004000         0x00004000         xrw
+FLASH            0x00000000         0x00008000         xr
+FLASH_TRUE       0x00000000         0x00080000         xr
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD src/main.o
+LOAD src/it.o
+LOAD src/startup.o
+LOAD src/sdram.o
+LOAD src/mpu.o
+LOAD src/dport.o
+LOAD src/dport_hw.o
+LOAD /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a
+LOAD ../../lib/mlpc17xx/libmlpc17xx.a
+LOAD ../../lib/misc/libmisc.a
+START GROUP
+LOAD /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/thumb2/libgcc.a
+LOAD /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a
+END GROUP
+                0x10002000                _estack = (ORIGIN (RAM) + 0x2000)
+                0x00000000                _flash_start = ORIGIN (FLASH_TRUE)
+                0x00080000                _flash_size = 0x80000
+                0x20000000                _vect_start = ORIGIN (VECTRAM)
+                0x00000100                _vect_size = 0x100
+                0x20000100                _uvect_start = ORIGIN (UVECTRAM)
+                0x00000010                _uvect_size = 0x10
+
+.text           0x00000000     0x25e4
+                0x00000000                . = ALIGN (0x4)
+ *(vectors)
+ vectors        0x00000000       0xcc src/it.o
+                0x00000000                myvectors
+ *(.text)
+ .text          0x000000cc        0x0 src/main.o
+ .text          0x000000cc       0x18 src/it.o
+                0x000000cc                Default_Handler
+                0x000000d0                NMI_Handler
+                0x000000d4                HF_Handler
+                0x000000d8                MEM_Handler
+                0x000000dc                BUS_Handler
+                0x000000e0                UF_Handler
+ .text          0x000000e4      0x104 src/startup.o
+                0x000000e4                Reset_Handler
+ .text          0x000001e8      0x778 src/sdram.o
+                0x000001e8                sdram_init
+                0x000004a8                sdram_test
+ .text          0x00000960       0x30 src/mpu.o
+                0x00000960                mpu_init
+ .text          0x00000990      0x824 src/dport.o
+                0x00001104                dport_init
+                0x00001144                DPort_Handler
+ .text          0x000011b4      0x198 src/dport_hw.o
+                0x000011b4                dport_hw_init
+                0x0000123c                dport_hw_getchar
+                0x0000126c                dport_hw_putchar
+                0x00001284                dport_hw_iap_write
+ .text          0x0000134c      0x174 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+                0x0000134c                memcpy
+ .text          0x000014c0      0x2b4 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+                0x00001584                uart_setup
+                0x000016b8                uart_disable
+                0x00001710                putChar
+                0x00001728                UART0_Handler
+                0x00001738                UART1_Handler
+                0x0000174c                UART2_Handler
+                0x00001760                UART3_Handler
+ .text          0x00001774       0xcc ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+                0x00001774                stimer_init
+                0x000017bc                stimer_settime
+                0x000017c8                stimer_deltatime
+                0x000017dc                stimer_wait
+                0x000017fc                stimer_settime_us
+                0x00001808                stimer_deltatime_us
+                0x00001820                stimer_wait_us
+ .text          0x00001840       0x78 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+                0x00001840                gpio_init
+                0x0000186c                gpio_setdir
+                0x00001888                gpio_drive
+                0x00001898                gpio_read
+                0x000018a8                gpio_switch
+ .text          0x000018b8      0x4bc ../../lib/misc/libmisc.a(debug.o)
+                0x000018b8                udebug_char
+                0x000018d0                udebug_str
+                0x000018ec                udebug_hex
+                0x00001940                udebug_bin
+                0x00001980                udebug_dec
+                0x00001a04                udprint
+ .text          0x00001d74       0x7c ../../lib/misc/libmisc.a(crc16.o)
+                0x00001d74                crc16_init
+                0x00001d7c                crc16_update
+                0x00001da4                crc16_final
+                0x00001dac                crc16ccitt_init
+                0x00001db4                crc16ccitt_update
+                0x00001de8                crc16ccitt_final
+ .text          0x00001df0       0x60 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+                0x00001df0                strlen
+ *(.text.*)
+ .text.unlikely
+                0x00001e50        0xc src/main.o
+ .text.startup  0x00001e5c      0x1e8 src/main.o
+                0x00001e5c                main
+ *(.rodata)
+ .rodata        0x00002044        0x8 src/main.o
+                0x00002044                testpin
+ .rodata        0x0000204c      0x140 src/sdram.o
+ .rodata        0x0000218c       0xf0 src/dport_hw.o
+                0x0000218c                sectors
+ .rodata        0x0000227c      0x200 ../../lib/misc/libmisc.a(crc16.o)
+ *(.rodata*)
+ .rodata.str1.4
+                0x0000247c      0x12e src/main.o
+                                0x130 (size before relaxing)
+ *fill*         0x000025aa        0x2 
+ .rodata.str1.4
+                0x000025ac        0xc ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+                                 0x10 (size before relaxing)
+ .rodata.str1.4
+                0x000025b8       0x2c ../../lib/misc/libmisc.a(debug.o)
+                0x000025e4                . = ALIGN (0x4)
+                0x000025e4                _etext = .
+                0x000025e4                _sidata = _etext
+
+.glue_7         0x000025e4        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x000025e4        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x000025e4        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x000025e4        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.iplt           0x000025e4        0x0
+ .iplt          0x00000000        0x0 src/main.o
+
+.rel.dyn        0x000025e4        0x0
+ .rel.iplt      0x00000000        0x0 src/main.o
+
+/DISCARD/
+ *(.ARM.exidx* .gnu.linkonce.armexidx.*)
+
+.data           0x10000000        0x0 load address 0x000025e4
+                0x10000000                . = ALIGN (0x4)
+                0x10000000                _sdata = .
+ *(.data)
+ .data          0x10000000        0x0 src/main.o
+ .data          0x10000000        0x0 src/it.o
+ .data          0x10000000        0x0 src/startup.o
+ .data          0x10000000        0x0 src/sdram.o
+ .data          0x10000000        0x0 src/mpu.o
+ .data          0x10000000        0x0 src/dport.o
+ .data          0x10000000        0x0 src/dport_hw.o
+ .data          0x10000000        0x0 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .data          0x10000000        0x0 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .data          0x10000000        0x0 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .data          0x10000000        0x0 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .data          0x10000000        0x0 ../../lib/misc/libmisc.a(debug.o)
+ .data          0x10000000        0x0 ../../lib/misc/libmisc.a(crc16.o)
+ .data          0x10000000        0x0 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ *(.data.*)
+                0x10000000                . = ALIGN (0x4)
+                0x10000000                _edata = .
+
+.igot.plt       0x10000000        0x0 load address 0x000025e4
+ .igot.plt      0x00000000        0x0 src/main.o
+
+.bss            0x10000000      0xefc load address 0x000025e4
+                0x10000000                . = ALIGN (0x4)
+                0x10000000                _sbss = .
+ *(.bss)
+ .bss           0x10000000        0x0 src/main.o
+ .bss           0x10000000        0x0 src/it.o
+ .bss           0x10000000        0x0 src/startup.o
+ .bss           0x10000000        0x0 src/sdram.o
+ .bss           0x10000000        0x0 src/mpu.o
+ .bss           0x10000000      0x850 src/dport.o
+                0x10000000                context
+                0x10000044                dstate
+ .bss           0x10000850      0x22c src/dport_hw.o
+                0x1000087c                flashbuf
+ .bss           0x10000a7c        0x0 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .bss           0x10000a7c      0x480 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+                0x10000a7c                uart
+ .bss           0x10000efc        0x0 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .bss           0x10000efc        0x0 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .bss           0x10000efc        0x0 ../../lib/misc/libmisc.a(debug.o)
+ .bss           0x10000efc        0x0 ../../lib/misc/libmisc.a(crc16.o)
+ .bss           0x10000efc        0x0 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+ *(COMMON)
+                0x10000efc                . = ALIGN (0x4)
+                0x10000efc                _ebss = .
+                0x10000efc                PROVIDE (end, _ebss)
+                0x10000efc                PROVIDE (_end, _ebss)
+                0x10000efc                PROVIDE (_heap, _ebss)
+                0x10001ff8                PROVIDE (_eheap, ALIGN (((ORIGIN (RAM) + 0x2000) - 0x8), 0x8))
+OUTPUT(bloader.out elf32-littlearm)
+
+.debug_info     0x00000000     0x89c1
+ .debug_info    0x00000000      0xf4d src/main.o
+ .debug_info    0x00000f4d       0xe7 src/it.o
+ .debug_info    0x00001034      0x4b0 src/startup.o
+ .debug_info    0x000014e4     0x17ba src/sdram.o
+ .debug_info    0x00002c9e      0x19f src/mpu.o
+ .debug_info    0x00002e3d     0x133e src/dport.o
+ .debug_info    0x0000417b     0x1918 src/dport_hw.o
+ .debug_info    0x00005a93     0x1959 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_info    0x000073ec      0x70a ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_info    0x00007af6      0x56e ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .debug_info    0x00008064      0x7a0 ../../lib/misc/libmisc.a(debug.o)
+ .debug_info    0x00008804      0x1bd ../../lib/misc/libmisc.a(crc16.o)
+
+.debug_abbrev   0x00000000     0x1695
+ .debug_abbrev  0x00000000      0x299 src/main.o
+ .debug_abbrev  0x00000299       0x74 src/it.o
+ .debug_abbrev  0x0000030d      0x12c src/startup.o
+ .debug_abbrev  0x00000439      0x187 src/sdram.o
+ .debug_abbrev  0x000005c0       0xc2 src/mpu.o
+ .debug_abbrev  0x00000682      0x3e8 src/dport.o
+ .debug_abbrev  0x00000a6a      0x373 src/dport_hw.o
+ .debug_abbrev  0x00000ddd      0x2f1 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_abbrev  0x000010ce      0x1e1 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_abbrev  0x000012af      0x15c ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .debug_abbrev  0x0000140b      0x1d9 ../../lib/misc/libmisc.a(debug.o)
+ .debug_abbrev  0x000015e4       0xb1 ../../lib/misc/libmisc.a(crc16.o)
+
+.debug_loc      0x00000000     0x2340
+ .debug_loc     0x00000000      0x13e src/main.o
+ .debug_loc     0x0000013e       0x20 src/startup.o
+ .debug_loc     0x0000015e      0x4b0 src/sdram.o
+ .debug_loc     0x0000060e      0x9b9 src/dport.o
+ .debug_loc     0x00000fc7      0x1f3 src/dport_hw.o
+ .debug_loc     0x000011ba      0x4bc ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_loc     0x00001676      0x116 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_loc     0x0000178c       0x5b ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .debug_loc     0x000017e7      0xa63 ../../lib/misc/libmisc.a(debug.o)
+ .debug_loc     0x0000224a       0xf6 ../../lib/misc/libmisc.a(crc16.o)
+
+.debug_aranges  0x00000000      0x188
+ .debug_aranges
+                0x00000000       0x28 src/main.o
+ .debug_aranges
+                0x00000028       0x20 src/it.o
+ .debug_aranges
+                0x00000048       0x20 src/startup.o
+ .debug_aranges
+                0x00000068       0x20 src/sdram.o
+ .debug_aranges
+                0x00000088       0x20 src/mpu.o
+ .debug_aranges
+                0x000000a8       0x20 src/dport.o
+ .debug_aranges
+                0x000000c8       0x20 src/dport_hw.o
+ .debug_aranges
+                0x000000e8       0x20 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_aranges
+                0x00000108       0x20 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_aranges
+                0x00000128       0x20 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .debug_aranges
+                0x00000148       0x20 ../../lib/misc/libmisc.a(debug.o)
+ .debug_aranges
+                0x00000168       0x20 ../../lib/misc/libmisc.a(crc16.o)
+
+.debug_ranges   0x00000000      0x550
+ .debug_ranges  0x00000000       0x40 src/main.o
+ .debug_ranges  0x00000040       0x48 src/startup.o
+ .debug_ranges  0x00000088      0x380 src/dport.o
+ .debug_ranges  0x00000408       0x90 src/dport_hw.o
+ .debug_ranges  0x00000498       0x18 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_ranges  0x000004b0       0x18 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_ranges  0x000004c8       0x88 ../../lib/misc/libmisc.a(debug.o)
+
+.debug_line     0x00000000     0x13d8
+ .debug_line    0x00000000      0x1d7 src/main.o
+ .debug_line    0x000001d7       0x3e src/it.o
+ .debug_line    0x00000215      0x138 src/startup.o
+ .debug_line    0x0000034d      0x270 src/sdram.o
+ .debug_line    0x000005bd       0xe8 src/mpu.o
+ .debug_line    0x000006a5      0x307 src/dport.o
+ .debug_line    0x000009ac      0x1c3 src/dport_hw.o
+ .debug_line    0x00000b6f      0x223 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_line    0x00000d92      0x173 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_line    0x00000f05      0x111 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .debug_line    0x00001016      0x338 ../../lib/misc/libmisc.a(debug.o)
+ .debug_line    0x0000134e       0x8a ../../lib/misc/libmisc.a(crc16.o)
+
+.debug_str      0x00000000     0x1673
+ .debug_str     0x00000000      0x495 src/main.o
+                                0x4e8 (size before relaxing)
+ .debug_str     0x00000495       0x65 src/it.o
+                                 0xb4 (size before relaxing)
+ .debug_str     0x000004fa      0x186 src/startup.o
+                                0x2de (size before relaxing)
+ .debug_str     0x00000680      0x6fb src/sdram.o
+                                0x9bb (size before relaxing)
+ .debug_str     0x00000d7b       0x5f src/mpu.o
+                                0x157 (size before relaxing)
+ .debug_str     0x00000dda      0x54a src/dport.o
+                                0x70b (size before relaxing)
+ .debug_str     0x00001324      0x104 src/dport_hw.o
+                                0xaae (size before relaxing)
+ .debug_str     0x00001428       0xa5 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+                                0x9f5 (size before relaxing)
+ .debug_str     0x000014cd       0x4e ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+                                0x30b (size before relaxing)
+ .debug_str     0x0000151b       0x2e ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+                                0x2e7 (size before relaxing)
+ .debug_str     0x00001549       0xbf ../../lib/misc/libmisc.a(debug.o)
+                                0x1ad (size before relaxing)
+ .debug_str     0x00001608       0x6b ../../lib/misc/libmisc.a(crc16.o)
+                                0x105 (size before relaxing)
+
+.comment        0x00000000       0x30
+ .comment       0x00000000       0x30 src/main.o
+                                 0x31 (size before relaxing)
+ .comment       0x00000000       0x31 src/it.o
+ .comment       0x00000000       0x31 src/startup.o
+ .comment       0x00000000       0x31 src/sdram.o
+ .comment       0x00000000       0x31 src/mpu.o
+ .comment       0x00000000       0x31 src/dport.o
+ .comment       0x00000000       0x31 src/dport_hw.o
+ .comment       0x00000000       0x31 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .comment       0x00000000       0x31 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .comment       0x00000000       0x31 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .comment       0x00000000       0x31 ../../lib/misc/libmisc.a(debug.o)
+ .comment       0x00000000       0x31 ../../lib/misc/libmisc.a(crc16.o)
+
+.ARM.attributes
+                0x00000000       0x33
+ .ARM.attributes
+                0x00000000       0x33 src/main.o
+ .ARM.attributes
+                0x00000033       0x33 src/it.o
+ .ARM.attributes
+                0x00000066       0x33 src/startup.o
+ .ARM.attributes
+                0x00000099       0x33 src/sdram.o
+ .ARM.attributes
+                0x000000cc       0x33 src/mpu.o
+ .ARM.attributes
+                0x000000ff       0x33 src/dport.o
+ .ARM.attributes
+                0x00000132       0x33 src/dport_hw.o
+ .ARM.attributes
+                0x00000165       0x29 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .ARM.attributes
+                0x0000018e       0x33 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .ARM.attributes
+                0x000001c1       0x33 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .ARM.attributes
+                0x000001f4       0x33 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .ARM.attributes
+                0x00000227       0x33 ../../lib/misc/libmisc.a(debug.o)
+ .ARM.attributes
+                0x0000025a       0x33 ../../lib/misc/libmisc.a(crc16.o)
+ .ARM.attributes
+                0x0000028d       0x29 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)
+
+.debug_frame    0x00000000      0x598
+ .debug_frame   0x00000000       0x3c src/main.o
+ .debug_frame   0x0000003c       0x70 src/it.o
+ .debug_frame   0x000000ac       0x2c src/startup.o
+ .debug_frame   0x000000d8       0x50 src/sdram.o
+ .debug_frame   0x00000128       0x20 src/mpu.o
+ .debug_frame   0x00000148       0x80 src/dport.o
+ .debug_frame   0x000001c8       0x74 src/dport_hw.o
+ .debug_frame   0x0000023c       0x34 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-memcpy.o)
+ .debug_frame   0x00000270       0xc0 ../../lib/mlpc17xx/libmlpc17xx.a(uart.o)
+ .debug_frame   0x00000330       0x98 ../../lib/mlpc17xx/libmlpc17xx.a(stimer.o)
+ .debug_frame   0x000003c8       0x60 ../../lib/mlpc17xx/libmlpc17xx.a(gpio.o)
+ .debug_frame   0x00000428       0xd0 ../../lib/misc/libmisc.a(debug.o)
+ .debug_frame   0x000004f8       0x80 ../../lib/misc/libmisc.a(crc16.o)
+ .debug_frame   0x00000578       0x20 /usr/spkg/unsorted/arm-2012.09-63/bin/../lib/gcc/arm-none-eabi/4.7.2/../../../../arm-none-eabi/lib/thumb2/libc.a(lib_a-strlen.o)

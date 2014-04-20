@@ -1,0 +1,53 @@
+About
+=====
+
+    K11 is hardware multimedia player (*.ogg, *.mp3, ...).
+    General features:
+
+System tree
+===========
+
+    ./config.mk                  Basic build configuration
+    ./Makefile                   Root make-file.
+    ./board                      Projects directory.
+    ./board/boardN               Directory of "boardN" project.
+    ./board/boardN/boardN.mk     Build configuration of "boardN" project.
+    ./board/boardN/Makefile      Makefile for project "boardN".
+    ./lib                        Directory with portable libraries that can be
+                                 used by all or some of projects.
+    ./util                       Directory with miscellaneous scripts/utilities
+                                 used by build process.
+    ./doc                        Miscellaneous documentation.
+
+WARNING
+    In order for most of code to work BSS section should be initialized with zeros at startup.
+
+Build
+=====
+    In order to build software of this project you need:
+        * unix-like operating system
+        * tcl interpterter
+        * gcc toolchain 
+
+    Build under windows not tested well.
+
+
+    Modify config.mk to meet your needs. Then run commands:
+
+        make depend
+        make
+
+
+External libraries
+==================
+    External libraries used in this project are (source code included in this project):
+        fat_io_lib    FAT16/32 File System Library     http://www.ultra-embedded.com/
+        TJpgDec       jpec decoder                     http://elm-chan.org/fsw/tjpgd/00index.html
+    
+Licence
+=======
+    Unless otherwise noted, all programs, libraries and designs in this project is under GPL version 3.
+    For licences of external libraries look for it's web site or/and source code.
+    Operating system is under "The BSD 2-Clause License".
+        
+

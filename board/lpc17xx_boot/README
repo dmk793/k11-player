@@ -1,0 +1,2 @@
+This bootloader is used by different projects.
+For build rules see apropriate *.mk file in board directory.
